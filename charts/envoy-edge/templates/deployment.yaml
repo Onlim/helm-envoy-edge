@@ -56,7 +56,7 @@ spec:
               containerPort: 8080
               protocol: TCP
               {{- if .Values.hostPort.enabled }}
-              nodePort: {{ .Values.hostPort.port }}
+              hostPort: {{ .Values.hostPort.port }}
               {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
