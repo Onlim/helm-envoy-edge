@@ -4,24 +4,16 @@ metadata:
   name: {{ include "envoy-edge.fullname" . }}
   labels:
     {{- include "envoy-edge.labels" . | nindent 4 }}
-  {{- with .Values.service.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.port }}
+    - port: 8080
+      targetPort: 8080
       protocol: TCP
-      name: {{ .Values.service.name }}
-    {{- if .Values.service.ports }}
-    {{- range $port := .Values.service.ports }}
-    - port: {{ $port.port }}
-      targetPort: {{ $port.targetPort }}
-      protocol: {{ $port.protocol }}
-      name: {{ $port.name }}
-    {{- end }}
-    {{- end }}
+      name: proxy
+    - port: 9901
+      targetPort: 9901
+      protocol: TCP
+      name: http-admin
   selector:
     {{- include "envoy-edge.selectorLabels" . | nindent 4 }}
