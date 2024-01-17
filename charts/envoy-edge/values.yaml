@@ -64,13 +64,9 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 3
 
-service:
-  type: ClusterIP
-  annotations: {}
-  port: 10000
-  targetPort: 10000
-  name: grpc-01
-  ports: []
+hostPort:
+  enabled: false
+  port: 5050
 
 resources: {}
 

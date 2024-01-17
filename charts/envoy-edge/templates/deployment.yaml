@@ -52,16 +52,12 @@ spec:
             - name: http-admin
               containerPort: 9901
               protocol: TCP
-            - name: {{ .Values.service.name }}
-              containerPort: {{ .Values.service.port }}
+            - name: proxy
+              containerPort: 8080
               protocol: TCP
-            {{- if .Values.service.ports }}
-            {{- range $port := .Values.service.ports }}
-            - name: {{ $port.name }}
-              containerPort: {{ $port.targetPort }}
-              protocol: {{ $port.protocol }}
-            {{- end }}
-            {{- end }}
+              {{- if .Values.hostPort.enabled }}
+              nodePort: {{ .Values.hostPort.port }}
+              {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
