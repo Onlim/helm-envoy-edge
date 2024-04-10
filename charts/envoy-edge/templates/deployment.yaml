@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "envoy-edge.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: Recreate
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -20,8 +22,6 @@ spec:
       labels:
         {{- include "envoy-edge.selectorLabels" . | nindent 8 }}
     spec:
-      strategy:
-        type: Recreate
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
