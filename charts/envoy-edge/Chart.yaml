@@ -4,10 +4,10 @@ description: A Helm chart for Deploy Envoy Proxy Edge
 icon: https://www.envoyproxy.io/docs/envoy/v1.21.0/_static/envoy-logo.png
 home: https://www.envoyproxy.io/
 sources:
-  - https://github.com/envoyproxy/envoy
+    - https://github.com/envoyproxy/envoy
 type: application
-version: 0.1.8
+version: 0.1.9
 appVersion: "1.21.0"
 maintainers:
-  - name: Felipe Nobrega Dias
-    email: felipe.dias@ativy.digital
+    - name: Felipe Nobrega Dias
+      email: felipe.dias@ativy.digital
